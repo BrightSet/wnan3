@@ -1,4 +1,4 @@
-# rustboot
+# wnan3
 
 An experimental os written in rust
 
