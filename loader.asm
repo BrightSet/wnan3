@@ -3,6 +3,21 @@ use16
 org 0x7c00
 
 boot:
+;change to 320x200 graphic mode
+mov ax, 13
+int 10h
+
+;frame buffer location
+push 0xa000
+pop es
+xor di, di
+
+        ;dot 2 pixels
+        ;mov ax, 1
+        ;mov [es:di], ax
+        ;inc di
+        ;mov [es:di], ax
+
     ; initialize segment registers
     xor ax, ax
     mov ds, ax
@@ -27,8 +42,10 @@ boot:
     mov eax, cr0
     or eax, 1
     mov cr0, eax
+
     ; far jump to load CS with 32 bit segment
     jmp 0x08:protected_mode
+
 
 error:
     mov si, .msg

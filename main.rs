@@ -82,6 +82,16 @@ fn put_char(x: u16, y: u16, c: u8) {
 //     }
 //
 // }
+/* only valid for 800x600x16M */
+fn putpixel(x : int,y : int, color : uint) {
+    let where = (x * y);
+    unsafe {
+      *((0xA0000 + where) as *mut u16) = color as u16 & 255 as u16;              // BLUE
+      *((0xA0000 + where + 1) as *mut u16) = (color as u16 >> 8) & 255;   // GREEN
+      *((0xA0000 + where + 2) as *mut u16) = (color as u16 >> 16) & 255;  // RED
+  }
+}
+
 #[no_mangle]
 #[no_split_stack]
 pub fn main() {
@@ -99,4 +109,5 @@ pub fn main() {
     put_char(11,0,'l' as u8);
     put_char(12,0,'d' as u8);
     put_char(13,0,'!' as u8);
+    putpixel(102,1,1);
 }
