@@ -84,15 +84,15 @@ fn put_char(x: u16, y: u16, c: u8) {
 // }
 /* only valid for 800x600x16M */
 fn putpixel(x : int,y : int, color : uint) {
-    let where = (x * y);
+    let wh = (x * y);
     unsafe {
-      *((0xA0000 + where) as *mut u16) = color as u16 & 255 as u16;              // BLUE
-      *((0xA0000 + where + 1) as *mut u16) = (color as u16 >> 8) & 255;   // GREEN
-      *((0xA0000 + where + 2) as *mut u16) = (color as u16 >> 16) & 255;  // RED
+      *((0xA0000 + wh) as *mut u16) = color as u16 & 255 as u16;              // BLUE
+      *((0xA0000 + wh + 1) as *mut u16) = (color as u16 >> 8) & 255;   // GREEN
+      *((0xA0000 + wh + 2) as *mut u16) = (color as u16 >> 16) & 255;  // RED
   }
 }
 fn fillrect(r : char, g : char, b : char, w : char, h : char) {
-  
+
 }
 #[no_mangle]
 #[no_split_stack]
