@@ -91,7 +91,9 @@ fn putpixel(x : int,y : int, color : uint) {
       *((0xA0000 + where + 2) as *mut u16) = (color as u16 >> 16) & 255;  // RED
   }
 }
-
+fn fillrect(r : char, g : char, b : char, w : char, h : char) {
+  
+}
 #[no_mangle]
 #[no_split_stack]
 pub fn main() {
