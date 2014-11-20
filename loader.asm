@@ -1,10 +1,10 @@
-use16
+use31
 
 org 0x7c00
 
 boot:
 ;change to 320x200 graphic mode
-mov ax, 13
+mov ax, 113
 int 10h
 
 ;frame buffer location

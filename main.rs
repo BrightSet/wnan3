@@ -83,17 +83,31 @@ fn put_char(x: u16, y: u16, c: u8) {
 //
 // }
 /* only valid for 800x600x16M */
-fn putpixel(x : int,y : int, color : uint) {
-    let wh = (x * y);
+fn put_pixel(x : int,y : int, color : uint) {
+    let wh = x*2 + y*1;
     unsafe {
       *((0xA0000 + wh) as *mut u16) = color as u16 & 255 as u16;              // BLUE
       *((0xA0000 + wh + 1) as *mut u16) = (color as u16 >> 8) & 255;   // GREEN
       *((0xA0000 + wh + 2) as *mut u16) = (color as u16 >> 16) & 255;  // RED
   }
 }
-fn fillrect(r : char, g : char, b : char, w : char, h : char) {
+/*
+fn fill_rect(fromX : int,fromY : int,toX : int,toY : int) {
+  // let mut i : int = fromX;
+  // let mut it : int = fromY;
+  let mut r = range(0, fromX);
+  loop{
+      match r.next() {
+          Some(x) => {
+              unsafe {
+                  put_pixel(fromX,)
+              }
+          },
+          None =>{break}
+      }
+  }
 
-}
+}*/
 #[no_mangle]
 #[no_split_stack]
 pub fn main() {
@@ -111,5 +125,7 @@ pub fn main() {
     put_char(11,0,'l' as u8);
     put_char(12,0,'d' as u8);
     put_char(13,0,'!' as u8);
-    putpixel(102,1,1);
+    put_pixel(1,1,4);
+    put_pixel(1,2,4);
+    //fill_rect(10,10,20,20);
 }
